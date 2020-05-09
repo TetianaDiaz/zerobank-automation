@@ -4,7 +4,10 @@ import com.zerobank.pages.AccountActivityPage;
 import com.zerobank.utilities.BrowserUtilities;
 import com.zerobank.utilities.Driver;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
+
+import java.util.List;
 
 public class AccountActivityStepDefinitions {
 
@@ -26,31 +29,21 @@ public class AccountActivityStepDefinitions {
 
     @Then("user should verify that in Account drop down default option should be Savings")
     public void user_should_verify_that_in_Account_drop_down_default_option_should_be_Savings() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        String option = accountActivityPage.checkDefaultAccountDropDownOption();
+        Assert.assertEquals(option, "Savings");
     }
 
-    @Then("user should verify that Account drop down should have the following options:")
-    public void user_should_verify_that_Account_drop_down_should_have_the_following_options(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+
+    @When("user clicks on Account drop down following option should be present:")
+    public void user_clicks_on_Account_drop_down_following_option_should_be_present(List<String> dataTable) {
+        System.out.println("Expected options: " + dataTable);
+       Assert.assertEquals(dataTable, accountActivityPage.getAccountDropDownOptions());
     }
+
 
     @Then("user should verify that transaction table have following column names:")
-    public void user_should_verify_that_transaction_table_have_following_column_names(io.cucumber.datatable.DataTable dataTable) {
-        // Write code here that turns the phrase above into concrete actions
-        // For automatic transformation, change DataTable to one of
-        // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-        // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-        // Double, Byte, Short, Long, BigInteger or BigDecimal.
-        //
-        // For other transformations you can register a DataTableType.
-        throw new io.cucumber.java.PendingException();
+    public void user_should_verify_that_transaction_table_have_following_column_names(List<String> dataTable) {
+        System.out.println("Verify that " + dataTable + " columns is present");
+        Assert.assertEquals(dataTable, accountActivityPage.getTransactionTableOptions());
     }
 }

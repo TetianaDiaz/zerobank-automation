@@ -22,13 +22,10 @@ public abstract class AbstractBasePage {
     public void navigateTo(String tabName){
         String tabNameXpath = "//a[contains(text(),'"+tabName+"')]";
         WebElement tabElement = driver.findElement(By.xpath(tabNameXpath));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(tabElement).
-                pause(2000).
-                build().perform();
+        tabElement.click();
 
         //increase wait time if still failing
-        BrowserUtilities.wait(4);
+        BrowserUtilities.wait(6);
         waitForLoaderMask();
     }
 
