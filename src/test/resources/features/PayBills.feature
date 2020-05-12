@@ -1,6 +1,6 @@
 @pay_bills
 Feature: Pay bills page validation
-  As user , I want to be able to see Pay Bills page
+  As user , I want to be able to see successful Pay operation message
 
 @positive_scenario
   Scenario: Pay Bills page positive

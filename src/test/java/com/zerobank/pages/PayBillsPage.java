@@ -47,19 +47,20 @@ public class PayBillsPage extends AbstractBasePage{
 
     public void enterDescription(String description){
         wait.until(ExpectedConditions.visibilityOf(descriptionField));
-        amountField.sendKeys(description);
-        wait.until(ExpectedConditions.textToBePresentInElement(descriptionField, description));
+        descriptionField.sendKeys(description);
+        //wait.until(ExpectedConditions.textToBePresentInElement(descriptionField, description));
 
     }
    public void enterDate(String date){
         wait.until(ExpectedConditions.visibilityOf(dateField));
-        amountField.sendKeys(date, Keys.ENTER);
-        wait.until(ExpectedConditions.textToBePresentInElement(dateField, date));
+        //dateField.click();
+        dateField.sendKeys(date);
+       BrowserUtilities.wait(5);
     }
 
    public void enterAmount(String amount){
    wait.until(ExpectedConditions.visibilityOf(amountField));
-   amountField.sendKeys(amount, Keys.ENTER);
+   amountField.sendKeys(amount);
    BrowserUtilities.wait(5);
 
    }
@@ -73,6 +74,7 @@ public class PayBillsPage extends AbstractBasePage{
    }
 
     public void selectPayee(String payeeName){
+
         payeeField.click();
         String payeeXpath = "//option[contains(text(),'" + payeeName + "')]";
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(payeeXpath)));
