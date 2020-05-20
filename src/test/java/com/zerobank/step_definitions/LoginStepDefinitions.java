@@ -27,12 +27,48 @@ public class LoginStepDefinitions {
         loginPage.login("username", "password");
     }
 
-    @Then("user should verify that title is Zero - Account Summary")
-    public void user_should_verify_that_title_is_Zero_Account_Summary() {
+
+    @Then("user should verify that title is {string}")
+    public void user_should_verify_that_title_is(String string) {
         System.out.println("Verify that title is Zero - Account Summary");
         BrowserUtilities.waitForPageToLoad(10);
         BrowserUtilities.wait(2);
-        Assert.assertEquals("Zero - Account Summary", Driver.getDriver().getTitle());
+        Assert.assertEquals(string, Driver.getDriver().getTitle());
     }
 
+    @When("users try to log in with invalid username {string}")
+    public void users_try_to_log_in_with_invalid_username(String string) {
+        System.out.println("Login with invalid username");
+        loginPage.login(string, "password");
+        BrowserUtilities.waitForPageToLoad(10);
+    }
+
+    @Then("user should verify that error message is {string}")
+    public void user_should_verify_that_error_message_is(String string) {
+
+        System.out.println("User verifies that error message is displayed");
+        BrowserUtilities.waitForPageToLoad(10);
+        Assert.assertEquals(loginPage.getWarningMessageText(), string);
+    }
+
+    @When("users try to log in with invalid password {string}")
+    public void users_try_to_log_in_with_invalid_password(String string) {
+        System.out.println("Login with invalid password");
+        loginPage.login("username", string);
+        BrowserUtilities.waitForPageToLoad(10);
+    }
+
+    @When("users try to log in with blank user name")
+    public void users_try_to_log_in_with_blank_user_name() {
+        System.out.println("Login with blank username");
+        loginPage.login("", "password");
+        BrowserUtilities.waitForPageToLoad(10);
+    }
+
+    @When("users try to log in with blank password")
+    public void users_try_to_log_in_with_blank_password() {
+        System.out.println("Login with blank username");
+        loginPage.login("username", "");
+        BrowserUtilities.waitForPageToLoad(10);
+    }
 }

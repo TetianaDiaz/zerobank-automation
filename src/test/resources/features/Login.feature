@@ -5,9 +5,29 @@ Feature: Login
   Background: open login page
     Given user is on the login page
 
-  @login
+  @valid_user
   Scenario: Login as authorized user
     When user logs in as an authorized user
-    Then user should verify that title is Zero - Account Summary
+    Then user should verify that title is "Zero - Account Summary"
+
+  @wrong_user_name
+  Scenario: Login with invalid user name credentials and verify that error message is Login and/or password are wrong.
+    When users try to log in with invalid username "test"
+    Then user should verify that error message is "Login and/or password are wrong."
+
+  @wrong_user_password
+  Scenario: Login with invalid password credentials and verify that error message is Login and/or password are wrong.
+    When users try to log in with invalid password "test"
+    Then user should verify that error message is "Login and/or password are wrong."
+
+  @blank_user_name
+  Scenario: Login with blank user name credentials and verify that error message is Login and/or password are wrong.
+    When users try to log in with blank user name
+    Then user should verify that error message is "Login and/or password are wrong."
+
+  @blank_password
+  Scenario: Login with blank password credentials and verify that error message is Login and/or password are wrong.
+    When users try to log in with blank password
+    Then user should verify that error message is "Login and/or password are wrong."
 
 

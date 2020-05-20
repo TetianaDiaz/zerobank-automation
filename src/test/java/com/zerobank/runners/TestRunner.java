@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/zerobank/step_definitions",
         dryRun = false,
-        tags = "@positive_scenario",
+        tags = "@login",
         plugin = {"html:target/default-report",
                 "json:target/cucumber1.json",
                 "rerun:target/rerun.txt"}
